@@ -1,0 +1,109 @@
+<%- include('./layouts/header') %>
+    <% if (data.books.length> 0) { %>
+        <h2 class="font-medium flex justify-center py-12 mt-10 leading-tight text-4xl mt-0 mb-2 text-blue-600">
+            Books By
+            <%= data.firstname %>
+                <%= data.lastname %>
+        </h2>
+        <div class="mx-8 my-12 bg-green-200 text-justify px-8">
+            <div class="overflow-x-auto">
+                <div
+                    class="min-w-screen min-h-screen bg-gray-100 flex items-center justify-center bg-gray-100 font-sans overflow-hidden">
+                    <div class="w-full lg:w-5/6">
+                        <div class="bg-white shadow-md rounded my-6">
+                            <table class="min-w-max w-full table-auto">
+                                <thead>
+                                    <tr class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
+                                        <th class="py-3 px-6 text-center">Title</th>
+                                        <th class="py-3 px-6 text-center">ISBN</th>
+                                        <th class="py-3 px-6 text-center">Description</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="text-gray-600 text-sm font-light">
+                                    <% data.books.forEach(book=> { %>
+                                        <tr class="border-b border-gray-200 hover:bg-gray-100">
+                                            <td class="py-3 px-6 text-left">
+                                                <div class="flex items-left">
+                                                    <span>
+                                                        <%= book.title %>
+                                                    </span>
+                                                </div>
+                                            </td>
+                                            <td class="py-3 px-6 text-left">
+                                                <span
+                                                    class="bg-purple-200 text-purple-600 py-1 px-3 rounded-full text-xs">
+                                                    <%= book.isbn %>
+                                                </span>
+                                            </td>
+                                            <td class="py-3 px-6 text-left">
+                                                <span
+                                                    class="bg-purple-200 text-purple-600 py-1 px-3 rounded-full text-xs">
+                                                    <%= book.description %>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <% }) %>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <% } %>
+            <% if (data.magazines.length>0) { %>
+                <h2 class="font-medium flex justify-center py-12 mt-10 leading-tight text-4xl mt-0 mb-2 text-blue-600">
+                    Magazines By
+                    <%= data.firstname %>
+                        <%= data.lastname %>
+                </h2>
+                <span class="absolute inset-x-0 bottom-0 h-2 bg-gradient-to-r from-green-300 via-blue-500
+                    to-purple-600"></span>
+                <div class="mx-8 my-12 bg-green-200 text-justify px-8">
+                    <div class="overflow-x-auto">
+                        <div
+                            class="min-w-screen min-h-screen bg-gray-100 flex items-center justify-center bg-gray-100 font-sans overflow-hidden">
+                            <div class="w-full lg:w-5/6">
+                                <div class="bg-white shadow-md rounded my-6">
+                                    <table class="min-w-max w-full table-auto">
+                                        <thead>
+                                            <tr class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
+                                                <th class="py-3 px-6 text-left">Title</th>
+                                                <th class="py-3 px-6 text-left">ISBN</th>
+                                                <th class="py-3 px-6 text-left">PublishedAt</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="text-gray-600 text-sm font-light">
+                                            <% data.magazines.forEach(mag=> { %>
+                                                <tr class="border-b border-gray-200 hover:bg-gray-100">
+                                                    <td class="py-3 px-3 text-left">
+                                                        <div class="flex items-center">
+                                                            <span>
+                                                                <%= mag.title %>
+                                                            </span>
+                                                        </div>
+                                                    </td>
+                                                    <td class="py-3 px-3 text-left">
+                                                        <span
+                                                            class="bg-purple-200 text-purple-600 py-1 px-3 rounded-full text-xs">
+                                                            <%= mag.isbn %>
+                                                        </span>
+                                                    </td>
+                                                    <td class="py-3 px-3 text-left">
+                                                        <span
+                                                            class="bg-purple-200 text-purple-600 py-1 px-3 rounded-full text-xs">
+                                                            <%= mag.publishedAt %>
+                                                        </span>
+                                                    </td>
+                                                </tr>
+                                                <% }) %>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <% } %>
+                    <%- include('./layouts/footer') %>
