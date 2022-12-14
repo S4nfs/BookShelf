@@ -94,17 +94,17 @@ exports.getByISBNlist = async (req, res, next) => {
         return res.render('404', error)
     }
 }
-// exports.getByISBNlistLink = async (req, res, next) => {
-//     try {
-//         let data;
-//         const { isbn } = req.params;
-//         data = await bdata.find((book) => book.isbn === isbn)
-//         data = await mdata.find((mag) => mag.isbn === isbn)
-//         return res.render('isbn', { data: data })
-//     } catch (error) {
-//         return res.render('404', error)
-//     }
-// }
+exports.getByISBNlistLink = async (req, res, next) => {
+    try {
+        let data;
+        const { isbn } = req.params;
+        data = await bdata.find((book) => book.isbn === isbn)
+        data = await mdata.find((mag) => mag.isbn === isbn)
+        return res.render('isbn', { data: data })
+    } catch (error) {
+        return res.render('404', error)
+    }
+}
 
 exports.getAuthorsBook = async (req, res, next) => {
     try {
