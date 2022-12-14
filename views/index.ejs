@@ -1,0 +1,98 @@
+<%- include('./layouts/header') %>
+    <form class="w-full max-w-sm" action=<%=`/isbn` %> method="POST">
+        <div class="flex items-center border-b border-teal-500 py-2">
+            <input
+                class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
+                type="text" placeholder="Enter ISBN (e.g 5454-5587-3210)" aria-label="ISBN" name="isbn">
+            <button class="h-3 w-10px-4 py-2 m-2 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg
+            text-sm mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none
+            dark:focus:ring-blue-800">Search by ISBN</a>
+            </button>
+        </div>
+    </form>
+
+    <form class="w-20" action=<%=`/author` %> method="POST">
+        <div class="flex items-center border-b border-teal-500 py-2">
+            <input
+                class="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
+                type="email" placeholder="Enter author's Email ID" aria-label="EMAIL" name="email">
+            <button class="h-3 w-10px-4 py-2 m-2 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg
+                text-sm mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none
+                dark:focus:ring-blue-800">Search by Author's Email</a>
+            </button>
+        </div>
+    </form>
+    <div class="mx-8 my-12 bg-green-200 text-justify px-8">
+        <div class="overflow-x-auto">
+            <div
+                class="min-w-screen min-h-screen bg-gray-100 flex items-center justify-center bg-gray-100 font-sans overflow-hidden">
+                <div class="w-full lg:w-5/6">
+                    <div class="bg-white shadow-md rounded my-6">
+                        <table class="min-w-max w-full table-auto">
+                            <thead>
+                                <tr class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal py-3">
+                                    <th class="py-3 px-6 text-center">FirstName</th>
+                                    <th class="py-3 px-6 text-center">LastName</th>
+                                    <th class="py-3 px-6 text-center">Email</th>
+                                    <th class="py-3 px-6 text-center">Books</th>
+                                    <th class="py-3 px-6 text-center">Magazines</th>
+
+                                </tr>
+                            </thead>
+                            <tbody class="text-gray-600 text-sm font-light">
+                                <% data.forEach(user=> { %>
+                                    <tr class="border-b border-gray-200 hover:bg-gray-100">
+                                        <td class="py-3 px-3 text-left whitespace-nowrap">
+                                            <div class="flex items-center">
+                                                <div class="mr-2">
+                                                    <img class="w-6 h-6 rounded-full border-gray-200 border transform hover:scale-125"
+                                                        src="https://randomuser.me/api/portraits/men/<%=Math.floor(Math.random()*90)%>.jpg" />
+                                                </div>
+                                                <span class="font-medium">
+                                                    <%= user.firstname %>
+                                                </span>
+                                            </div>
+                                        </td>
+                                        <td class="py-3 px-3 text-left">
+                                            <div class="flex items-center">
+                                                <span>
+                                                    <%= user.lastname %>
+                                                </span>
+                                            </div>
+                                        </td>
+                                        <td class="py-3 px-7 text-left">
+                                            <span class="bg-purple-200 text-purple-600 py-1 px-3 rounded-full text-xs">
+                                                <%= user.email %>
+                                            </span>
+                                        </td>
+                                        <td class="py-3 px-6 text-left">
+                                            <ul class="list-disc">
+                                                <% user.books.forEach(book=> { %>
+                                                    <li><a href="/admin/user/<%= book.title %>">
+                                                            <%=book.title%>
+                                                        </a>
+                                                    </li>
+                                                    <% }) %>
+                                            </ul>
+                                        </td>
+                                        <td class="py-3 px-6 text-left">
+                                            <ul class="list-disc">
+                                                <% user.magazines.forEach(mag=> { %>
+                                                    <li>
+                                                        <%=mag.title%>
+                                                    </li>
+                                                    <% }) %>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                    <% }) %>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <%- include('./layouts/footer') %>
